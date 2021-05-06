@@ -60,6 +60,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -73,5 +75,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app will need the device location to provide distances to dogs</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app will need the device location to provide distances to dogs</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Spot will need access to camera if you want to post a photo of your dog</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Spot will need access to photo library if you want to post a photo of your dog</string>
 </dict>
 </plist>

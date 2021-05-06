@@ -83,14 +83,6 @@
       "idiom" : "watch-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
-    },
-    {
-      "filename" : "Icon-29@2x.png",
-      "idiom" : "watch",
-      "role" : "notificationCenter",
-      "scale" : "2x",
-      "size" : "29x29",
-      "subtype" : "44mm"
     }
   ],
   "info" : {

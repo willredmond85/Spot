@@ -57,7 +57,8 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: FUIAuthDelegate {
     func authPickerViewController(forAuthUI authUI: FUIAuth) -> FUIAuthPickerViewController {
-        let marginInsets: CGFloat = 16.0 // amount to indent UIImageView on each side
+        let marginInsets: CGFloat = 16.0// amount to indent UIImageView on each side
+        let topInsets: CGFloat = 0.0
         let topSafeArea = self.view.safeAreaInsets.top
 
         // Create an instance of the FirebaseAuth login view controller
@@ -70,7 +71,7 @@ extension LogInViewController: FUIAuthDelegate {
 
         // Create a frame for a UIImageView to hold our logo
         let x = marginInsets
-        let y = marginInsets + topSafeArea
+        let y = topInsets + topSafeArea
         let width = self.view.frame.width - (marginInsets * 2)
         //        let height = loginViewController.view.subviews[0].frame.height - (topSafeArea) - (marginInsets * 2)
         let height = UIScreen.main.bounds.height - (topSafeArea) - (marginInsets * 2)
