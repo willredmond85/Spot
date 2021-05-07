@@ -25,12 +25,12 @@ class LikedDogs {
     
     func loadData (completed: @escaping () -> () ) {
         let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let documentURL = directoryURL.appendingPathComponent("todos").appendingPathExtension("json")
+        let documentURL = directoryURL.appendingPathComponent("likedDogs").appendingPathExtension("json")
         
         guard let data = try? Data(contentsOf: documentURL) else {return}
         let jsonDecoder = JSONDecoder()
         do {
-            itemsArray = try jsonDecoder.decode(Array<ToDoItem>.self, from: data)
+            dogsArray = try jsonDecoder.decode(Array<LikedDog>.self, from: data)
             
         } catch {
             print("ERROR: Could not load data")

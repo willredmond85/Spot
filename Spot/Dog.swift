@@ -16,13 +16,13 @@ class Dog: NSObject, MKAnnotation {
     var breed: String
     var personality: String
     var hypo: Bool
-    var like: Bool
+    var liked: Bool
     var posterID: String
     var posterName: String
     var documentID: String
     
     var dictionary: [String: Any] {
-        return ["name": name, "latitude": latitude, "longitude": longitude, "size": size, "breed": breed, "personality": personality, "hypo": hypo, "like": like, "posterID": posterID, "posterName": posterName]
+        return ["name": name, "latitude": latitude, "longitude": longitude, "size": size, "breed": breed, "personality": personality, "hypo": hypo, "liked": liked, "posterID": posterID, "posterName": posterName]
     }
     
     var latitude: CLLocationDegrees {
@@ -37,14 +37,14 @@ class Dog: NSObject, MKAnnotation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    init(name: String, coordinate: CLLocationCoordinate2D, size: String, breed: String, personality: String, hypo: Bool, like: Bool, posterID: String, posterName: String, documentID: String) {
+    init(name: String, coordinate: CLLocationCoordinate2D, size: String, breed: String, personality: String, hypo: Bool, liked: Bool, posterID: String, posterName: String, documentID: String) {
         self.name = name
         self.coordinate = coordinate
         self.size = size
         self.breed = breed
         self.personality = personality
         self.hypo = hypo
-        self.like = like
+        self.liked = liked
         self.posterID = posterID
         self.posterName = posterName
         self.documentID = documentID
@@ -53,7 +53,7 @@ class Dog: NSObject, MKAnnotation {
     convenience override init() {
         let posterID = Auth.auth().currentUser?.uid ?? ""
         let posterName = Auth.auth().currentUser?.displayName ?? ""
-        self.init(name: "", coordinate: CLLocationCoordinate2D(), size: "", breed: "", personality: "", hypo: false, like: false, posterID: posterID, posterName: posterName, documentID: "")
+        self.init(name: "", coordinate: CLLocationCoordinate2D(), size: "", breed: "", personality: "", hypo: false, liked: false, posterID: posterID, posterName: posterName, documentID: "")
     }
     
     convenience init(dictionary: [String: Any]) {
@@ -65,11 +65,11 @@ class Dog: NSObject, MKAnnotation {
         let breed = dictionary["breed"] as! String? ?? ""
         let personality = dictionary["personality"] as! String? ?? ""
         let hypo = dictionary["hypo"] as! Bool? ?? false
-        let like = dictionary["like"] as! Bool? ?? false
+        let liked = dictionary["liked"] as! Bool? ?? false
         let posterID = dictionary["posterID"] as! String? ?? ""
         let posterName = dictionary["posterName"] as! String? ?? ""
         
-        self.init(name: name, coordinate: coordinate, size: size, breed: breed, personality: personality, hypo: hypo, like: like, posterID: posterID, posterName: posterName, documentID: "")
+        self.init(name: name, coordinate: coordinate, size: size, breed: breed, personality: personality, hypo: hypo, liked: liked, posterID: posterID, posterName: posterName, documentID: "")
     }
     
     func saveData(completion: @escaping (Bool) -> ()) {

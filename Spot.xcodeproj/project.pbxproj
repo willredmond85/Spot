@@ -19,6 +19,7 @@
 		A410F4D52643D15100DEA9CA /* UIViewController+alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F4D42643D15100DEA9CA /* UIViewController+alert.swift */; };
 		A410F5162643DB8800DEA9CA /* LikedDogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F5152643DB8800DEA9CA /* LikedDogs.swift */; };
 		A410F5192643DBFF00DEA9CA /* LikedDog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F5182643DBFF00DEA9CA /* LikedDog.swift */; };
+		A410F5982644AB3500DEA9CA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F5972644AB3500DEA9CA /* ProfileViewController.swift */; };
 		A44AFD1A2639F31800521CF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AFD192639F31800521CF5 /* AppDelegate.swift */; };
 		A44AFD1C2639F31800521CF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AFD1B2639F31800521CF5 /* SceneDelegate.swift */; };
 		A44AFD1E2639F31800521CF5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AFD1D2639F31800521CF5 /* LogInViewController.swift */; };
@@ -44,6 +45,7 @@
 		A410F4D42643D15100DEA9CA /* UIViewController+alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+alert.swift"; sourceTree = "<group>"; };
 		A410F5152643DB8800DEA9CA /* LikedDogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedDogs.swift; sourceTree = "<group>"; };
 		A410F5182643DBFF00DEA9CA /* LikedDog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedDog.swift; sourceTree = "<group>"; };
+		A410F5972644AB3500DEA9CA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A44AFD162639F31800521CF5 /* Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A44AFD192639F31800521CF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A44AFD1B2639F31800521CF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				A410F3F02643867C00DEA9CA /* SpotUsers.swift */,
 				A44AFD1D2639F31800521CF5 /* LogInViewController.swift */,
 				A410F3C22643503700DEA9CA /* DogDetailViewController.swift */,
+				A410F5972644AB3500DEA9CA /* ProfileViewController.swift */,
 				A410F3CB264380B700DEA9CA /* LikesViewController.swift */,
 				A410F3CE264383E400DEA9CA /* LikeTableViewCell.swift */,
 				A410F4D42643D15100DEA9CA /* UIViewController+alert.swift */,
@@ -269,6 +272,7 @@
 				A410F4D52643D15100DEA9CA /* UIViewController+alert.swift in Sources */,
 				A410F3CC264380B700DEA9CA /* LikesViewController.swift in Sources */,
 				A410F3C32643503700DEA9CA /* DogDetailViewController.swift in Sources */,
+				A410F5982644AB3500DEA9CA /* ProfileViewController.swift in Sources */,
 				A410F3CF264383E400DEA9CA /* LikeTableViewCell.swift in Sources */,
 				A44AFD1E2639F31800521CF5 /* LogInViewController.swift in Sources */,
 				A44AFD1A2639F31800521CF5 /* AppDelegate.swift in Sources */,

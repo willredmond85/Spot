@@ -15,21 +15,23 @@ class LikeTableViewCell: UITableViewCell {
     @IBOutlet weak var breedLabel: UILabel!
     @IBOutlet weak var posterButton: UIButton!
     @IBOutlet weak var dogImageView: UIImageView!
+    @IBOutlet weak var priceLabel: UILabel!
     
     
     var dog: LikedDog! {
         didSet {
             nameLabel.text = dog.name
             breedLabel.text = dog.breed
-            posterButton.setTitle(dog.posterID, for: .normal)
+            priceLabel.text = "$\(dog.price)"
+            posterButton.setTitle(dog.posterName, for: .normal)
             
             // round corners of original dog image
-            dogImageView.layer.cornerRadius = 20
-            dogImageView.layer.borderWidth = 3
-            dogImageView.layer.borderColor = UIColor.black.cgColor
+            dogImageView.layer.cornerRadius = 10
+            dogImageView.layer.borderWidth = 2
+            dogImageView.layer.borderColor = UIColor.white.cgColor
             dogImageView.clipsToBounds = true
             
-            guard let url = URL(string: photo.photoURL) else {
+            guard let url = URL(string: dog.photoURL) else {
                 dogImageView.image = UIImage(systemName: "questionmark")
                 return
             }

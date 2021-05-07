@@ -65,7 +65,7 @@ extension LogInViewController: FUIAuthDelegate {
         let loginViewController = FUIAuthPickerViewController(authUI: authUI)
 
         // Set background color to white
-        loginViewController.view.backgroundColor = UIColor(named: "PrimaryColor")
+        loginViewController.view.backgroundColor = UIColor(named: "IntroColor")
         loginViewController.view.subviews[0].backgroundColor = UIColor.clear
         loginViewController.view.subviews[0].subviews[0].backgroundColor = UIColor.clear
 

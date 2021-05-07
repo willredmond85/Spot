@@ -12,31 +12,40 @@ class SpotUser {
     var email: String
     var displayName: String
     var photoURL: String
+    var sizePref: String
+    var hypoPref: String
+    var maxDistance: Double
     var documentID: String
     
     var dictionary: [String: Any] {
-        return ["email": email, "displayName": displayName, "photoURL": photoURL]
+        return ["email": email, "displayName": displayName, "photoURL": photoURL, "sizePref": sizePref, "hypoPref": hypoPref, "maxDistance": maxDistance]
     }
     
-    init(email: String, displayName: String, photoURL: String, documentID: String) {
+    init(email: String, displayName: String, photoURL: String, documentID: String, sizePref: String, hypoPref: String, maxDistance: Double) {
         self.email = email
         self.displayName = displayName
         self.photoURL = photoURL
         self.documentID = documentID
+        self.sizePref = sizePref
+        self.hypoPref = hypoPref
+        self.maxDistance = maxDistance
     }
     
     convenience init(user: User) {
         let email = user.email ?? ""
         let displayName = user.displayName ?? ""
         let photoURL = (user.photoURL != nil ? "\(user.photoURL)" : "")
-        self.init(email: email, displayName: displayName, photoURL: photoURL, documentID: user.uid)
+        self.init(email: email, displayName: displayName, photoURL: photoURL, sizePref: "", hypoPref: "", maxDistance: 0.0, documentID: user.uid)
     }
     
     convenience init(dictionary: [String: Any]) {
         let email = dictionary["email"] as! String? ?? ""
         let displayName = dictionary["displayName"] as! String? ?? ""
         let photoURL = dictionary["photoURL"] as! String? ?? ""
-        self.init(email: email, displayName: displayName, photoURL: photoURL, documentID: "")
+        let sizePref = dictionary["sizePref"] as! String? ?? ""
+        let hypoPref = dictionary["hypoPref"] as! String? ?? ""
+        let maxDistance = dictionary["maxDistance"] as! Double
+        self.init(email: email, displayName: displayName, photoURL: photoURL, sizePref: sizePref, hypoPref: hypoPref, maxDistance: maxDistance, documentID: "")
     }
     
     func saveIfNewUser(completion: @escaping (Bool) -> ()) {
