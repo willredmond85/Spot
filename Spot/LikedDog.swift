@@ -10,7 +10,7 @@ import Foundation
 struct LikedDog: Codable {
     var name: String
     var breed: String
-    var photoURL: String
     var posterID: String
     var posterName: String
+    var posterEmail: String
 }

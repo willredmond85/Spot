@@ -21,7 +21,7 @@ class SpotUser {
         return ["email": email, "displayName": displayName, "photoURL": photoURL, "sizePref": sizePref, "hypoPref": hypoPref, "maxDistance": maxDistance]
     }
     
-    init(email: String, displayName: String, photoURL: String, documentID: String, sizePref: String, hypoPref: String, maxDistance: Double) {
+    init(email: String, displayName: String, photoURL: String, sizePref: String, hypoPref: String, maxDistance: Double, documentID: String) {
         self.email = email
         self.displayName = displayName
         self.photoURL = photoURL

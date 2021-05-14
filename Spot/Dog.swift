@@ -19,10 +19,11 @@ class Dog: NSObject, MKAnnotation {
     var liked: Bool
     var posterID: String
     var posterName: String
+    var posterEmail: String
     var documentID: String
     
     var dictionary: [String: Any] {
-        return ["name": name, "latitude": latitude, "longitude": longitude, "size": size, "breed": breed, "personality": personality, "hypo": hypo, "liked": liked, "posterID": posterID, "posterName": posterName]
+        return ["name": name, "latitude": latitude, "longitude": longitude, "size": size, "breed": breed, "personality": personality, "hypo": hypo, "liked": liked, "posterID": posterID, "posterEmail": posterEmail, "posterName": posterName]
     }
     
     var latitude: CLLocationDegrees {
@@ -37,7 +38,7 @@ class Dog: NSObject, MKAnnotation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    init(name: String, coordinate: CLLocationCoordinate2D, size: String, breed: String, personality: String, hypo: Bool, liked: Bool, posterID: String, posterName: String, documentID: String) {
+    init(name: String, coordinate: CLLocationCoordinate2D, size: String, breed: String, personality: String, hypo: Bool, liked: Bool, posterID: String, posterName: String, posterEmail: String, documentID: String) {
         self.name = name
         self.coordinate = coordinate
         self.size = size
@@ -47,13 +48,15 @@ class Dog: NSObject, MKAnnotation {
         self.liked = liked
         self.posterID = posterID
         self.posterName = posterName
+        self.posterEmail = posterEmail
         self.documentID = documentID
     }
     
     convenience override init() {
         let posterID = Auth.auth().currentUser?.uid ?? ""
         let posterName = Auth.auth().currentUser?.displayName ?? ""
-        self.init(name: "", coordinate: CLLocationCoordinate2D(), size: "", breed: "", personality: "", hypo: false, liked: false, posterID: posterID, posterName: posterName, documentID: "")
+        let posterEmail = Auth.auth().currentUser?.email ?? ""
+        self.init(name: "", coordinate: CLLocationCoordinate2D(), size: "", breed: "", personality: "", hypo: false, liked: false, posterID: posterID, posterName: posterName, posterEmail: posterEmail, documentID: "")
     }
     
     convenience init(dictionary: [String: Any]) {
@@ -68,8 +71,9 @@ class Dog: NSObject, MKAnnotation {
         let liked = dictionary["liked"] as! Bool? ?? false
         let posterID = dictionary["posterID"] as! String? ?? ""
         let posterName = dictionary["posterName"] as! String? ?? ""
+        let posterEmail = dictionary["posterEmail"] as! String? ?? ""
         
-        self.init(name: name, coordinate: coordinate, size: size, breed: breed, personality: personality, hypo: hypo, liked: liked, posterID: posterID, posterName: posterName, documentID: "")
+        self.init(name: name, coordinate: coordinate, size: size, breed: breed, personality: personality, hypo: hypo, liked: liked, posterID: posterID, posterName: posterName, posterEmail: posterEmail, documentID: "")
     }
     
     func saveData(completion: @escaping (Bool) -> ()) {
@@ -78,7 +82,17 @@ class Dog: NSObject, MKAnnotation {
             print("ERROR: could not save data bc we dont have a valid postingID")
             return completion(false)
         }
+        guard let posterEmail = Auth.auth().currentUser?.email else {
+            print("ERROR: could not save data bc we dont have a valid postingID")
+            return completion(false)
+        }
+        guard let posterName = Auth.auth().currentUser?.displayName else {
+            print("ERROR: could not save data bc we dont have a valid postingID")
+            return completion(false)
+        }
         self.posterID = posterID
+        self.posterEmail = posterEmail
+        self.posterName = posterName
         let dataToSave: [String: Any] = self.dictionary
         if self.documentID == "" {
             var ref: DocumentReference? = nil

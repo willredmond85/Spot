@@ -21,10 +21,11 @@ class DogDetailViewController: UIViewController {
     @IBOutlet weak var hypoImageView: UIImageView!
     @IBOutlet weak var dislikeButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var priceLabel: UILabel!
+    
     
     var dog: Dog!
     var photo: Photo!
+    var photos: Photos!
     var likedDogs = LikedDogs()
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
@@ -41,7 +42,9 @@ class DogDetailViewController: UIViewController {
             dog = Dog()
         }
         
-        dog = Dog(name: "Loots", coordinate: CLLocationCoordinate2D(), size: "S", breed: "Bichon Frise", personality: "Loving \nActs like a cat \nVery timid \nOnce had nasal mites!? \nLikes to eat when we eat\nHis real name is Louie", price: 999, hypo: true, liked: false, posterID: "", posterName: "Will Redmond", documentID: "")
+        photos = Photos()
+        
+        dog = Dog(name: "Loots", coordinate: CLLocationCoordinate2D(), size: "S", breed: "Bichon Frise", personality: "Loving \nActs like a cat \nVery timid \nOnce had nasal mites!? \nLikes to eat when we eat\nHis real name is Louie", hypo: true, liked: false, image: UIImage(), posterID: "", posterName: "Will Redmond", posterEmail: "willredmond85@gmail.com ", documentID: "")
         photo = Photo(image: UIImage(named: "lou")!, photoUserID: "", photoURL: "", documentID: "")
         
     }
@@ -62,8 +65,10 @@ class DogDetailViewController: UIViewController {
             
             likedDogs.loadData {
                 destination.likedDogs = self.likedDogs
+                destination.photo = self.photo
             }
         }
+       
     }
     
     func clearUserInterface() {
@@ -73,7 +78,6 @@ class DogDetailViewController: UIViewController {
         sizeLabel.text = ""
         distanceLabel.text = ""
         descriptionTextView.text = ""
-        priceLabel.text = ""
         hypoImageView.image = UIImage()
         if dog.liked {
             likeButton.isEnabled = false
@@ -84,7 +88,6 @@ class DogDetailViewController: UIViewController {
         nameLabel.text = dog.name
         breedLabel.text = dog.breed
         sizeLabel.text = dog.size
-        priceLabel.text = "$\(dog.price)"
         distanceLabel.text = "" //"\(dog.location.distance(from: currentLocation))"
         descriptionTextView.text = dog.personality
         if dog.hypo {
@@ -97,6 +100,7 @@ class DogDetailViewController: UIViewController {
         dislikeButton.layer.cornerRadius = 4
         imageView.clipsToBounds = true
         
+        //TODO: set up photoURL
 //        guard let url = URL(string: photo.photoURL) else {
 //            imageView.image = UIImage(systemName: "questionmark")
 //            return
@@ -113,7 +117,7 @@ class DogDetailViewController: UIViewController {
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         dog.liked = true
         likeButton.isEnabled = false
-        let newLikedDog = LikedDog(name: dog.name, breed: dog.breed, photoURL: photo.photoURL, posterID: dog.posterID, posterName: dog.posterName, price: dog.price)
+        let newLikedDog = LikedDog(name: dog.name, breed: dog.breed, image: dog.image, posterID: dog.posterID, posterName: dog.posterName, posterEmail: dog.posterEmail)
         likedDogs.dogsArray.append(newLikedDog)
         likedDogs.saveData()
         //TODO: go to a new dog

@@ -13,6 +13,7 @@ class LikesViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var likedDogs: LikedDogs!
+    var photos: Photos!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ extension LikesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LikeTableViewCell
         cell.dog = likedDogs.dogsArray[indexPath.row]
+        cell.photo = photos.photoArray[indexPath.row]
         return cell
     }
     
