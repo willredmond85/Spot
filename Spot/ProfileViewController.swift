@@ -22,7 +22,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var prefLabel: UILabel!
     @IBOutlet weak var hypoLabel: UILabel!
-
+    @IBOutlet weak var postingSwitch: UISwitch!
+    
     var user = Auth.auth().currentUser
     var prefernces = Preferences()
     
@@ -99,5 +100,29 @@ class ProfileViewController: UIViewController {
         }
         prefernces.saveData()
     }
+    
+    @IBAction func sizeSegmentPressed(_ sender: UISegmentedControl) {
+        newSizePreference()
+    }
+    
+    @IBAction func hypoSegmentPressed(_ sender: UISegmentedControl) {
+        newHypoPreference()
+    }
+    
+    @IBAction func distanceSegmentPressed(_ sender: UISegmentedControl) {
+        newDistancePreference()
+    }
+    
+    
+    @IBAction func postingSwitchChanged(_ sender: UISwitch) {
+        if postingSwitch.isOn {
+            prefernces.prefArray[0].posting = true
+        } else {
+            prefernces.prefArray[0].posting = false
+        }
+    }
+    
+    
+    
     
 }

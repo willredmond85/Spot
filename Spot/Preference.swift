@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Preferences: Codable {
+struct Preference: Codable {
     var sizePref: String
     var hypoPref: String
     var maxDistance: Double
+    var posting: Bool
 }

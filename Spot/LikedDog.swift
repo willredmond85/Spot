@@ -13,4 +13,5 @@ struct LikedDog: Codable {
     var posterID: String
     var posterName: String
     var posterEmail: String
+    var documentID: String
 }

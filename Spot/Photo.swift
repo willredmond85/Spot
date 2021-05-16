@@ -59,7 +59,7 @@ class Photo {
         
         let uploadTsk = storageRef.putData(photoData, metadata: uploadMetaData) { (metadata, error) in
             if let error = error {
-                print("ERROR: upload for ref \(uploadMetaData) failed")
+                print("ERROR: upload for ref \(uploadMetaData) failed \(error.localizedDescription)")
             }
         }
         
@@ -119,7 +119,7 @@ class Photo {
         let db = Firestore.firestore()
         db.collection("dogs").document(dog.documentID).collection("photos").document(documentID).delete { (error) in
             if let error = error {
-                print("ERROR: deleting photo documentID")
+                print("ERROR: deleting photo documentID\(error.localizedDescription)")
                 completion(false)
             } else {
                completion(true)
@@ -135,7 +135,7 @@ class Photo {
         let storageRef = storage.reference().child(dog.documentID).child(documentID)
         storageRef.delete { error in
             if let error = error {
-                print("ERROR: couldnt delete photo")
+                print("ERROR: couldnt delete photo\(error.localizedDescription)")
             } else {
                 print("photo deleted")
             }

@@ -75,7 +75,6 @@ class NewDogTableViewController: UITableViewController {
             print("this is wrong")
         }
         dog.personality = descriptionTextView.text!
-        //
         dog.coordinate = CLLocationCoordinate2D()
         
     }
@@ -108,6 +107,11 @@ class NewDogTableViewController: UITableViewController {
         leaveViewController()
     }
     
+    @IBAction func addressEditChanged(_ sender: UITextField) {
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         updateFromUserInterface()
@@ -155,4 +159,24 @@ extension NewDogTableViewController: UIImagePickerControllerDelegate, UINavigati
             self.oneButtonAlert(title: "Camera Not Available", message: "There is no camera on this device.")
         }
     }
+}
+
+extension NewDogTableViewController: GMSAutocompleteViewControllerDelegate {
+
+  // Handle the user's selection.
+  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+    dog.coordinate = place.coordinate
+    dismiss(animated: true, completion: nil)
+  }
+
+  func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    // TODO: handle the error.
+    print("Error: ", error.localizedDescription)
+  }
+
+  // User canceled the operation.
+  func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+    dismiss(animated: true, completion: nil)
+  }
+
 }

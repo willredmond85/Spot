@@ -16,8 +16,13 @@ class LikeTableViewCell: UITableViewCell {
     @IBOutlet weak var posterButton: UIButton!
     @IBOutlet weak var dogImageView: UIImageView!
 
+    var photo: Photo! {
+        didSet {
+            dogImageView.image = self.photo.image
+        }
+    }
     
-    var photo: Photo!
+    //var photo: Photo!
     var dog: LikedDog! {
         didSet {
             nameLabel.text = dog.name
@@ -30,13 +35,14 @@ class LikeTableViewCell: UITableViewCell {
             dogImageView.layer.borderColor = UIColor.white.cgColor
             dogImageView.clipsToBounds = true
             
-            guard let url = URL(string: photo.photoURL) else {
-                dogImageView.image = UIImage(systemName: "questionmark")
-                return
-            }
-            
-            dogImageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "questionmark"))
+//            guard let url = URL(string: photo.photoURL) else {
+//                dogImageView.image = UIImage(systemName: "questionmark")
+//                return
+//            }
+//
+//            dogImageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "questionmark"))
         }
     }
+    
 
 }

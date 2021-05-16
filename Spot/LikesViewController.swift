@@ -13,8 +13,8 @@ class LikesViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var likedDogs: LikedDogs!
-    var photos: Photos!
-    
+    var photo: Photo!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,10 +25,12 @@ class LikesViewController: UIViewController {
         likedDogs.loadData {
             self.tableView.reloadData()
         }
-        
     }
     
     
+    @IBAction func postingButtonPressed(_ sender: UIButton) {
+        oneButtonAlert(title: "Poster Email:", message: "willredmond85@gmail.com")
+    }
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         if tableView.isEditing {
@@ -50,7 +52,9 @@ extension LikesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LikeTableViewCell
         cell.dog = likedDogs.dogsArray[indexPath.row]
-        cell.photo = photos.photoArray[indexPath.row]
+       // cell.photo = photos.photoArray[indexPath.row]
+        cell.photo = photo
+        print("+++++++++++++++\(indexPath.row) and \(potos[indexPath.row])")
         return cell
     }
     
@@ -73,14 +77,14 @@ extension LikesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != 0 ? true : false
+        return indexPath.row != -1 ? true : false
     }
 
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return indexPath.row != 0 ? true : false
+        return indexPath.row != -1 ? true : false
     }
 
     func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-        return proposedDestinationIndexPath.row == 0 ? sourceIndexPath : proposedDestinationIndexPath
+        return proposedDestinationIndexPath.row == -1 ? sourceIndexPath : proposedDestinationIndexPath
     }
 }

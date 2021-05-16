@@ -32,10 +32,10 @@
         <scene sceneID="PBt-Pa-I6P">
             <objects>
                 <tableViewController id="42c-0O-IEh" customClass="NewDogTableViewController" customModule="Spot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="gbr-cF-g8x">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="30" sectionFooterHeight="1" id="gbr-cF-g8x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.33412819300000002" green="0.5" blue="0.34562779380000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection headerTitle="" id="xaN-IC-f0n">
                                 <cells>
@@ -218,6 +218,9 @@
                                                     <rect key="frame" x="107" y="5" width="252" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="addressEditChanged:" destination="42c-0O-IEh" eventType="editingDidBegin" id="WYK-lU-lWw"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -255,7 +258,6 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZqW-t4-Wn6">
                                                     <rect key="frame" x="16" y="43" width="343" height="224"/>
                                                     <color key="backgroundColor" red="0.44424768570000001" green="0.66478629310000004" blue="0.45953723969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -583,6 +585,7 @@ His real name is Louie</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addDogButton" destination="gUe-jw-fTL" id="SIq-iy-0RT"/>
                         <outlet property="breedLabel" destination="7kx-XY-Mai" id="Xrc-qx-HVQ"/>
                         <outlet property="descriptionTextView" destination="vBM-nb-fJv" id="1zB-LE-sLO"/>
                         <outlet property="dislikeButton" destination="YKw-TL-tGy" id="xU0-9W-zel"/>
@@ -649,6 +652,9 @@ His real name is Louie</string>
                                     <segment title="Any"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="sizeSegmentPressed:" destination="LDc-yO-gKq" eventType="valueChanged" id="c8v-VH-sWO"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preferences" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvt-8u-C7o">
                                 <rect key="frame" x="16" y="354" width="343" height="24"/>
@@ -705,6 +711,9 @@ His real name is Louie</string>
                                     <segment title="No"/>
                                     <segment title="Any"/>
                                 </segments>
+                                <connections>
+                                    <action selector="hypoSegmentPressed:" destination="LDc-yO-gKq" eventType="valueChanged" id="HmI-te-dRN"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mHi-4G-794">
                                 <rect key="frame" x="184" y="500" width="175" height="32"/>
@@ -716,14 +725,24 @@ His real name is Louie</string>
                                     <segment title="Any"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="distanceSegmentPressed:" destination="LDc-yO-gKq" eventType="valueChanged" id="hR1-OE-QRa"/>
+                                </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQz-kl-Ope">
                                 <rect key="frame" x="75.5" y="561" width="224" height="71"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Posting Mode:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOM-2p-gkH">
-                                        <rect key="frame" x="20" y="23" width="132" height="25"/>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="npT-nr-vVA">
+                                        <rect key="frame" x="159" y="20" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.31017768820000002" green="0.46415970680000002" blue="0.32085299090000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="postingSwitchChanged:" destination="LDc-yO-gKq" eventType="valueChanged" id="r8T-hF-Fnz"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posting Mode:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOM-2p-gkH">
+                                        <rect key="frame" x="16" y="20" width="131.5" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="msk-hs-aQf"/>
                                             <constraint firstAttribute="height" constant="31" id="x0Q-vc-oTA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
@@ -732,17 +751,18 @@ His real name is Louie</string>
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="npT-nr-vVA">
-                                        <rect key="frame" x="157" y="20" width="49" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="onTintColor" red="0.31017768820000002" green="0.46415970680000002" blue="0.32085299090000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44424768570000001" green="0.66478629310000004" blue="0.45953723969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="npT-nr-vVA" secondAttribute="trailing" constant="16" id="1q0-Sr-vaM"/>
+                                    <constraint firstItem="xOM-2p-gkH" firstAttribute="top" secondItem="pQz-kl-Ope" secondAttribute="top" constant="20" id="Adt-QL-Hl1"/>
+                                    <constraint firstItem="npT-nr-vVA" firstAttribute="leading" secondItem="xOM-2p-gkH" secondAttribute="trailing" constant="11.5" id="HKA-Pb-4ym"/>
                                     <constraint firstAttribute="height" constant="71" id="JOI-a1-wJ0"/>
+                                    <constraint firstAttribute="bottom" secondItem="xOM-2p-gkH" secondAttribute="bottom" constant="20" id="YHt-lb-lTx"/>
+                                    <constraint firstAttribute="bottom" secondItem="npT-nr-vVA" secondAttribute="bottom" constant="20" id="bXE-Jh-mAT"/>
                                     <constraint firstAttribute="width" constant="224" id="cZ9-NV-fbM"/>
+                                    <constraint firstItem="xOM-2p-gkH" firstAttribute="leading" secondItem="pQz-kl-Ope" secondAttribute="leading" constant="16" id="crq-w6-R2C"/>
+                                    <constraint firstItem="npT-nr-vVA" firstAttribute="top" secondItem="pQz-kl-Ope" secondAttribute="top" constant="20" id="sVw-mi-01o"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -784,7 +804,7 @@ His real name is Louie</string>
                         <outlet property="hypoLabel" destination="kQi-y5-XBx" id="HRg-oC-JMC"/>
                         <outlet property="hypoSegmentControl" destination="h2O-1k-Ihp" id="oDt-xn-qcf"/>
                         <outlet property="nameLabel" destination="1HP-F2-FUq" id="21C-01-c8l"/>
-                        <outlet property="postingSwitch" destination="npT-nr-vVA" id="ndt-mR-4x0"/>
+                        <outlet property="postingSwitch" destination="npT-nr-vVA" id="kKO-ka-2OY"/>
                         <outlet property="prefLabel" destination="Lvt-8u-C7o" id="kVj-Ro-yGE"/>
                         <outlet property="profileImageView" destination="VRz-tk-SL1" id="nhx-bs-YPZ"/>
                         <outlet property="sizeLabel" destination="j1Y-ap-ANs" id="KNm-ww-Ewl"/>
@@ -881,6 +901,9 @@ His real name is Louie</string>
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="postingButtonPressed:" destination="WjA-gM-Dho" eventType="touchUpInside" id="SKk-vV-TAB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.44424768570000001" green="0.66478629310000004" blue="0.45953723969999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

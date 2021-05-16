@@ -21,12 +21,17 @@ class DogDetailViewController: UIViewController {
     @IBOutlet weak var hypoImageView: UIImageView!
     @IBOutlet weak var dislikeButton: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var addDogButton: UIBarButtonItem!
     
     
     var dog: Dog!
+    var dogs: Dogs!
     var photo: Photo!
     var photos: Photos!
     var likedDogs = LikedDogs()
+    var prefences = Preferences()
+    var currentDog = 0
+    
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
     //TODO: add image picker for more images
@@ -42,20 +47,23 @@ class DogDetailViewController: UIViewController {
             dog = Dog()
         }
         
+        dogs = Dogs()
         photos = Photos()
-        
-        dog = Dog(name: "Loots", coordinate: CLLocationCoordinate2D(), size: "S", breed: "Bichon Frise", personality: "Loving \nActs like a cat \nVery timid \nOnce had nasal mites!? \nLikes to eat when we eat\nHis real name is Louie", hypo: true, liked: false, image: UIImage(), posterID: "", posterName: "Will Redmond", posterEmail: "willredmond85@gmail.com ", documentID: "")
-        photo = Photo(image: UIImage(named: "lou")!, photoUserID: "", photoURL: "", documentID: "")
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        prefences.loadData {
+            if self.prefences.prefArray[0].posting == false {
+                self.addDogButton.isEnabled = false
+            }
+        }
+        
+        changeDog()
         clearUserInterface()
-        
         getLocation()
-        
         updateUserInterface()
     }
     
@@ -68,7 +76,10 @@ class DogDetailViewController: UIViewController {
                 destination.photo = self.photo
             }
         }
-       
+    }
+    
+    func changeDog() {
+        dog = dogs.dogArray[currentDog]
     }
     
     func clearUserInterface() {
@@ -79,12 +90,33 @@ class DogDetailViewController: UIViewController {
         distanceLabel.text = ""
         descriptionTextView.text = ""
         hypoImageView.image = UIImage()
-        if dog.liked {
-            likeButton.isEnabled = false
+//        if dog.liked {
+//            likeButton.isEnabled = false
+//        }
+    }
+    
+    func addToCurrentDog() {
+        if currentDog == dogs.dogArray.count - 1 {
+            currentDog = 0
+        } else {
+            currentDog += 1
         }
     }
     
+    func checkIfLiked(newDog: Dog) -> Bool {
+        likedDogs.loadData {
+            for diggityDog in self.likedDogs.dogsArray {
+                if newDog.documentID == diggityDog.documentID {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    
     func updateUserInterface() {
+    
         nameLabel.text = dog.name
         breedLabel.text = dog.breed
         sizeLabel.text = dog.size
@@ -112,16 +144,21 @@ class DogDetailViewController: UIViewController {
 
     @IBAction func dislikeButtonPressed(_ sender: UIButton) {
         //TODO: go to a new dog
+        addToCurrentDog()
+        changeDog()
+        updateUserInterface()
     }
+
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        dog.liked = true
-        likeButton.isEnabled = false
-        let newLikedDog = LikedDog(name: dog.name, breed: dog.breed, image: dog.image, posterID: dog.posterID, posterName: dog.posterName, posterEmail: dog.posterEmail)
+        let newLikedDog = LikedDog(name: dog.name, breed: dog.breed, posterID: dog.posterID, posterName: dog.posterName, posterEmail: dog.posterEmail, documentID: dog.documentID)
         likedDogs.dogsArray.append(newLikedDog)
         likedDogs.saveData()
         //TODO: go to a new dog
         //TODO: add like animation
+        addToCurrentDog()
+        changeDog()
+        updateUserInterface()
     }
     
     
