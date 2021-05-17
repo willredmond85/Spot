@@ -13,10 +13,11 @@ class LikesViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var likedDogs: LikedDogs!
-    var photo: Photo!
+    var photo: UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -27,10 +28,10 @@ class LikesViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func postingButtonPressed(_ sender: UIButton) {
-        oneButtonAlert(title: "Poster Email:", message: "willredmond85@gmail.com")
+    @IBAction func posterButtonPressed(_ sender: UIButton) {
+       // oneButtonAlert(title: "Poster Email:", message: "\(likedDogs.dogsArray[])")
     }
+    
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         if tableView.isEditing {
@@ -53,8 +54,7 @@ extension LikesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LikeTableViewCell
         cell.dog = likedDogs.dogsArray[indexPath.row]
        // cell.photo = photos.photoArray[indexPath.row]
-        cell.photo = photo
-        print("+++++++++++++++\(indexPath.row) and \(potos[indexPath.row])")
+        cell.image = photo
         return cell
     }
     

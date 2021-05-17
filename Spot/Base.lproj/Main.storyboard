@@ -56,6 +56,7 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="twN-tg-Shf">
                                                     <rect key="frame" x="103.5" y="5" width="255.5" height="34"/>
+                                                    <color key="textColor" name="PrimaryColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -94,6 +95,7 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LdX-IF-L8K">
                                                     <rect key="frame" x="104.5" y="5" width="254.5" height="34"/>
+                                                    <color key="textColor" name="PrimaryColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -216,6 +218,7 @@
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGQ-Zi-dMf">
                                                     <rect key="frame" x="107" y="5" width="252" height="34"/>
+                                                    <color key="textColor" name="PrimaryColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -339,11 +342,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="KUd-53-X4Q">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SiT-cg-gkH">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="42c-0O-IEh" id="t3u-k8-IhG"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="4fH-9S-lpL">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="42c-0O-IEh" id="rZt-Aw-h5l"/>
                             </connections>
@@ -838,7 +843,7 @@ His real name is Louie</string>
                                 </items>
                                 <color key="barTintColor" name="PrimaryColor"/>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="doi-cK-fkg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="doi-cK-fkg">
                                 <rect key="frame" x="0.0" y="44" width="375" height="579"/>
                                 <color key="backgroundColor" name="PrimaryColor"/>
                                 <color key="sectionIndexBackgroundColor" name="PrimaryColor"/>
@@ -896,13 +901,13 @@ His real name is Louie</string>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="gUx-et-2Ih"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                     <state key="normal" title="Posting User">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="postingButtonPressed:" destination="WjA-gM-Dho" eventType="touchUpInside" id="SKk-vV-TAB"/>
+                                                        <action selector="posterButtonPressed:" destination="WjA-gM-Dho" eventType="touchUpInside" id="KYL-QN-zbE"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

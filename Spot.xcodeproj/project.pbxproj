@@ -10,10 +10,8 @@
 		A407C35426473A8600FE7D58 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A407C35326473A8600FE7D58 /* Preference.swift */; };
 		A410F3C32643503700DEA9CA /* DogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F3C22643503700DEA9CA /* DogDetailViewController.swift */; };
 		A410F3C6264376FB00DEA9CA /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F3C5264376FB00DEA9CA /* Dog.swift */; };
-		A410F3C92643790C00DEA9CA /* SpotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F3C82643790C00DEA9CA /* SpotUser.swift */; };
 		A410F3CC264380B700DEA9CA /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F3CB264380B700DEA9CA /* LikesViewController.swift */; };
 		A410F3CF264383E400DEA9CA /* LikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F3CE264383E400DEA9CA /* LikeTableViewCell.swift */; };
-		A410F3F12643867C00DEA9CA /* SpotUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F3F02643867C00DEA9CA /* SpotUsers.swift */; };
 		A410F413264399B200DEA9CA /* Dogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F412264399B200DEA9CA /* Dogs.swift */; };
 		A410F4B02643A4E700DEA9CA /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F4AF2643A4E700DEA9CA /* Photo.swift */; };
 		A410F4B32643B1AC00DEA9CA /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F4B22643B1AC00DEA9CA /* Photos.swift */; };
@@ -23,6 +21,7 @@
 		A410F5982644AB3500DEA9CA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F5972644AB3500DEA9CA /* ProfileViewController.swift */; };
 		A410F6362644CB2500DEA9CA /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F6352644CB2500DEA9CA /* Preferences.swift */; };
 		A410F67B2644D5AD00DEA9CA /* NewDogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A410F67A2644D5AD00DEA9CA /* NewDogTableViewController.swift */; };
+		A42625D02652165F00C5BF2F /* APIkey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42625CF2652165F00C5BF2F /* APIkey.swift */; };
 		A44AFD1A2639F31800521CF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AFD192639F31800521CF5 /* AppDelegate.swift */; };
 		A44AFD1C2639F31800521CF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AFD1B2639F31800521CF5 /* SceneDelegate.swift */; };
 		A44AFD1E2639F31800521CF5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44AFD1D2639F31800521CF5 /* LogInViewController.swift */; };
@@ -39,10 +38,8 @@
 		A407C35326473A8600FE7D58 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
 		A410F3C22643503700DEA9CA /* DogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailViewController.swift; sourceTree = "<group>"; };
 		A410F3C5264376FB00DEA9CA /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
-		A410F3C82643790C00DEA9CA /* SpotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotUser.swift; sourceTree = "<group>"; };
 		A410F3CB264380B700DEA9CA /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		A410F3CE264383E400DEA9CA /* LikeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeTableViewCell.swift; sourceTree = "<group>"; };
-		A410F3F02643867C00DEA9CA /* SpotUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotUsers.swift; sourceTree = "<group>"; };
 		A410F412264399B200DEA9CA /* Dogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dogs.swift; sourceTree = "<group>"; };
 		A410F4AF2643A4E700DEA9CA /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		A410F4B22643B1AC00DEA9CA /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
@@ -52,6 +49,7 @@
 		A410F5972644AB3500DEA9CA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A410F6352644CB2500DEA9CA /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		A410F67A2644D5AD00DEA9CA /* NewDogTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDogTableViewController.swift; sourceTree = "<group>"; };
+		A42625CF2652165F00C5BF2F /* APIkey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkey.swift; sourceTree = "<group>"; };
 		A44AFD162639F31800521CF5 /* Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A44AFD192639F31800521CF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A44AFD1B2639F31800521CF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				A44AFD192639F31800521CF5 /* AppDelegate.swift */,
+				A42625CF2652165F00C5BF2F /* APIkey.swift */,
 				A44AFD1B2639F31800521CF5 /* SceneDelegate.swift */,
 				A410F3C5264376FB00DEA9CA /* Dog.swift */,
 				A410F412264399B200DEA9CA /* Dogs.swift */,
@@ -114,8 +113,6 @@
 				A410F5152643DB8800DEA9CA /* LikedDogs.swift */,
 				A410F4AF2643A4E700DEA9CA /* Photo.swift */,
 				A410F4B22643B1AC00DEA9CA /* Photos.swift */,
-				A410F3C82643790C00DEA9CA /* SpotUser.swift */,
-				A410F3F02643867C00DEA9CA /* SpotUsers.swift */,
 				A407C35326473A8600FE7D58 /* Preference.swift */,
 				A410F6352644CB2500DEA9CA /* Preferences.swift */,
 				A44AFD1D2639F31800521CF5 /* LogInViewController.swift */,
@@ -276,11 +273,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A410F4B32643B1AC00DEA9CA /* Photos.swift in Sources */,
-				A410F3F12643867C00DEA9CA /* SpotUsers.swift in Sources */,
 				A410F5192643DBFF00DEA9CA /* LikedDog.swift in Sources */,
 				A410F4D52643D15100DEA9CA /* UIViewController+alert.swift in Sources */,
 				A410F3CC264380B700DEA9CA /* LikesViewController.swift in Sources */,
 				A410F3C32643503700DEA9CA /* DogDetailViewController.swift in Sources */,
+				A42625D02652165F00C5BF2F /* APIkey.swift in Sources */,
 				A410F6362644CB2500DEA9CA /* Preferences.swift in Sources */,
 				A407C35426473A8600FE7D58 /* Preference.swift in Sources */,
 				A410F5982644AB3500DEA9CA /* ProfileViewController.swift in Sources */,
@@ -290,7 +287,6 @@
 				A410F5162643DB8800DEA9CA /* LikedDogs.swift in Sources */,
 				A410F3C6264376FB00DEA9CA /* Dog.swift in Sources */,
 				A410F4B02643A4E700DEA9CA /* Photo.swift in Sources */,
-				A410F3C92643790C00DEA9CA /* SpotUser.swift in Sources */,
 				A410F67B2644D5AD00DEA9CA /* NewDogTableViewController.swift in Sources */,
 				A410F413264399B200DEA9CA /* Dogs.swift in Sources */,
 				A44AFD1C2639F31800521CF5 /* SceneDelegate.swift in Sources */,

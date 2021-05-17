@@ -8,8 +8,8 @@
 import Foundation
 
 struct Preference: Codable {
-    var sizePref: String
-    var hypoPref: String
-    var maxDistance: Double
+    var sizePref: Int
+    var hypoPref: Int
+    var maxDistance: Int
     var posting: Bool
 }

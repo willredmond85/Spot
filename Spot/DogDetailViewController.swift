@@ -32,8 +32,8 @@ class DogDetailViewController: UIViewController {
     var prefences = Preferences()
     var currentDog = 0
     
-    var locationManager: CLLocationManager!
     var currentLocation: CLLocation!
+    var locationManager: CLLocationManager!
     //TODO: add image picker for more images
     
     override func viewDidLoad() {
@@ -52,6 +52,15 @@ class DogDetailViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        dogs.loadData {
+            self.dog = self.dogs.dogArray[self.currentDog]
+            self.updateUserInterface()
+        }
+        changeDog()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -61,7 +70,6 @@ class DogDetailViewController: UIViewController {
             }
         }
         
-        changeDog()
         clearUserInterface()
         getLocation()
         updateUserInterface()
@@ -73,13 +81,58 @@ class DogDetailViewController: UIViewController {
             
             likedDogs.loadData {
                 destination.likedDogs = self.likedDogs
-                destination.photo = self.photo
+                //destination.photo = self.photos.photoArray[0]
             }
         }
     }
     
     func changeDog() {
-        dog = dogs.dogArray[currentDog]
+        if dogs.dogArray.count == currentDog {
+            dog = Dog()
+        } else {
+            dog = dogs.dogArray[currentDog]
+            checkIfGoodDog()
+        }
+    }
+    
+    func checkIfGoodDog(){
+        var wereGood = true
+        let distance = calculateDistance()
+        let sizes = ["S", "M", "L"]
+        let hypos = [true, false]
+        
+        if sizes.firstIndex(of: dog.size) == prefences.prefArray[0].sizePref || prefences.prefArray[0].sizePref == 3 {
+            print("good size")
+        } else {
+            wereGood = false
+        }
+        if hypos.firstIndex(of: dog.hypo) == prefences.prefArray[0].hypoPref || prefences.prefArray[0].hypoPref == 2 {
+            print("good hypo")
+        } else {
+            wereGood = false
+        }
+        if distance <= 50.0 && prefences.prefArray[0].maxDistance == 0 || distance <= 150.0 && prefences.prefArray[0].maxDistance == 1 || distance <= 500.0 && prefences.prefArray[0].maxDistance == 2 || prefences.prefArray[0].maxDistance == 3 {
+            print("good distance")
+        } else {
+            wereGood = false
+        }
+        
+        if wereGood == false {
+            addToCurrentDog()
+            changeDog()
+        }
+    }
+    
+    
+    
+    func calculateDistance() -> Double{
+        let dogLocation = CLLocation(latitude: dog.coordinate.latitude, longitude: dog.coordinate.longitude)
+        var distance = 0.0
+        if let currentLocation = currentLocation {
+            distance = currentLocation.distance(from: dogLocation) * 0.000621371
+            print(distance)
+        }
+        return distance
     }
     
     func clearUserInterface() {
@@ -103,15 +156,15 @@ class DogDetailViewController: UIViewController {
         }
     }
     
-    func checkIfLiked(newDog: Dog) -> Bool {
+    func checkIfLiked(newDog: Dog){
         likedDogs.loadData {
             for diggityDog in self.likedDogs.dogsArray {
                 if newDog.documentID == diggityDog.documentID {
-                    return false
+                    self.addToCurrentDog()
+                    self.changeDog()
                 }
             }
         }
-        return true
     }
     
     
@@ -120,7 +173,7 @@ class DogDetailViewController: UIViewController {
         nameLabel.text = dog.name
         breedLabel.text = dog.breed
         sizeLabel.text = dog.size
-        distanceLabel.text = "" //"\(dog.location.distance(from: currentLocation))"
+        distanceLabel.text = "\(Int(calculateDistance()))mi"
         descriptionTextView.text = dog.personality
         if dog.hypo {
             hypoImageView.image = UIImage(systemName: "checkmark.square.fill")
@@ -137,7 +190,8 @@ class DogDetailViewController: UIViewController {
 //            imageView.image = UIImage(systemName: "questionmark")
 //            return
 //        }
-        imageView.image = photo.image
+        imageView.image = dog.image ?? UIImage(systemName: "questionmark")
+        
 //        imageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "questionmark"))
     }
     
@@ -154,8 +208,6 @@ class DogDetailViewController: UIViewController {
         let newLikedDog = LikedDog(name: dog.name, breed: dog.breed, posterID: dog.posterID, posterName: dog.posterName, posterEmail: dog.posterEmail, documentID: dog.documentID)
         likedDogs.dogsArray.append(newLikedDog)
         likedDogs.saveData()
-        //TODO: go to a new dog
-        //TODO: add like animation
         addToCurrentDog()
         changeDog()
         updateUserInterface()

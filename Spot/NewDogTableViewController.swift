@@ -38,6 +38,7 @@ class NewDogTableViewController: UITableViewController {
         
         photoSavedLabel.text = ""
         
+        
         if dog == nil {
             dog = Dog()
         }
@@ -75,7 +76,6 @@ class NewDogTableViewController: UITableViewController {
             print("this is wrong")
         }
         dog.personality = descriptionTextView.text!
-        dog.coordinate = CLLocationCoordinate2D()
         
     }
     
@@ -122,6 +122,7 @@ class NewDogTableViewController: UITableViewController {
                 print("ERROR: cant unwind review segue")
             }
         }
+        
     }
     
 
@@ -134,9 +135,9 @@ extension NewDogTableViewController: UIImagePickerControllerDelegate, UINavigati
         photo = Photo()
         
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            photo.image = editedImage
+            dog.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            photo.image = originalImage
+            dog.image = originalImage
         }
         photoSavedLabel.text = "photo saved!"
         dismiss(animated: true, completion: nil)
@@ -162,21 +163,22 @@ extension NewDogTableViewController: UIImagePickerControllerDelegate, UINavigati
 }
 
 extension NewDogTableViewController: GMSAutocompleteViewControllerDelegate {
-
+    
   // Handle the user's selection.
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+    
     dog.coordinate = place.coordinate
+    addressTextField.text = place.formattedAddress
     dismiss(animated: true, completion: nil)
   }
 
   func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
     // TODO: handle the error.
-    print("Error: ", error.localizedDescription)
+    print("Error: -------", error.localizedDescription)
   }
 
   // User canceled the operation.
   func wasCancelled(_ viewController: GMSAutocompleteViewController) {
     dismiss(animated: true, completion: nil)
   }
-
 }

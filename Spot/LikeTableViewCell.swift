@@ -16,9 +16,9 @@ class LikeTableViewCell: UITableViewCell {
     @IBOutlet weak var posterButton: UIButton!
     @IBOutlet weak var dogImageView: UIImageView!
 
-    var photo: Photo! {
+    var image: UIImage! {
         didSet {
-            dogImageView.image = self.photo.image
+            dogImageView.image = self.image
         }
     }
     
@@ -27,7 +27,7 @@ class LikeTableViewCell: UITableViewCell {
         didSet {
             nameLabel.text = dog.name
             breedLabel.text = dog.breed
-            posterButton.setTitle(dog.posterName, for: .normal)
+            posterButton.setTitle(dog.posterEmail, for: .normal)
             
             // round corners of original dog image
             dogImageView.layer.cornerRadius = 10

@@ -29,8 +29,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+    
         configureSegmentedControl(segmentControl: sizeSegmentControl)
         configureSegmentedControl(segmentControl: hypoSegmentControl)
         configureSegmentedControl(segmentControl: distanceSegmentControl)
@@ -39,11 +38,17 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        prefernces.loadData {
+            print(self.prefernces.prefArray)
+        }
+        
         updateUserInterface()
     }
     
     func updateUserInterface() {
+        setSegmentedControls()
+        print("hi")
+        
         nameLabel.text = user?.displayName
         emailLabel.text = user?.email
         
@@ -61,6 +66,20 @@ class ProfileViewController: UIViewController {
         profileImageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "person.crop.circle"))
     }
     
+    func setSegmentedControls() {
+        prefernces.loadData {
+            self.sizeSegmentControl.selectedSegmentIndex = self.prefernces.prefArray[0].sizePref
+            self.hypoSegmentControl.selectedSegmentIndex = self.prefernces.prefArray[0].hypoPref
+            self.distanceSegmentControl.selectedSegmentIndex = self.prefernces.prefArray[0].maxDistance
+            if self.prefernces.prefArray[0].posting{
+                self.postingSwitch.isOn = true
+            } else {
+                self.postingSwitch.isOn = false
+            }
+                
+        }
+    }
+    
     func configureSegmentedControl(segmentControl: UISegmentedControl) {
         segmentControl.layer.borderColor = UIColor.white.cgColor
         segmentControl.layer.borderWidth = 1.0
@@ -68,10 +87,10 @@ class ProfileViewController: UIViewController {
     
     func newSizePreference() {
         switch sizeSegmentControl.selectedSegmentIndex {
-        case 0: prefernces.prefArray[0].sizePref = "S"
-        case 1: prefernces.prefArray[0].sizePref = "M"
-        case 2: prefernces.prefArray[0].sizePref = "L"
-        case 3: prefernces.prefArray[0].sizePref = "A"
+        case 0: prefernces.prefArray[0].sizePref = 0
+        case 1: prefernces.prefArray[0].sizePref = 1
+        case 2: prefernces.prefArray[0].sizePref = 2
+        case 3: prefernces.prefArray[0].sizePref = 3
         default:
             print("woah hey u shouldnt be here")
         }
@@ -80,9 +99,9 @@ class ProfileViewController: UIViewController {
     
     func newHypoPreference() {
         switch hypoSegmentControl.selectedSegmentIndex {
-        case 0: prefernces.prefArray[0].hypoPref = "Y"
-        case 1: prefernces.prefArray[0].hypoPref = "N"
-        case 2: prefernces.prefArray[0].hypoPref = "A"
+        case 0: prefernces.prefArray[0].hypoPref = 0
+        case 1: prefernces.prefArray[0].hypoPref = 1
+        case 2: prefernces.prefArray[0].hypoPref = 2
         default:
             print("woah hey u shouldnt be here")
         }
@@ -91,10 +110,10 @@ class ProfileViewController: UIViewController {
     
     func newDistancePreference() {
         switch distanceSegmentControl.selectedSegmentIndex {
-        case 0: prefernces.prefArray[0].maxDistance = 50.0
-        case 1: prefernces.prefArray[0].maxDistance = 150.0
-        case 2: prefernces.prefArray[0].maxDistance = 500.0
-        case 3: prefernces.prefArray[0].maxDistance = 0.0
+        case 0: prefernces.prefArray[0].maxDistance = 0
+        case 1: prefernces.prefArray[0].maxDistance = 1
+        case 2: prefernces.prefArray[0].maxDistance = 2
+        case 3: prefernces.prefArray[0].maxDistance = 3
         default:
             print("woah hey u shouldnt be here")
         }

@@ -8,7 +8,7 @@
 import Foundation
 
 class Preferences {
-    var prefArray: [Preference] = [Preference(sizePref: "", hypoPref: "", maxDistance: 0.0, posting: false)]
+    var prefArray: [Preference] = [Preference(sizePref: 3, hypoPref: 2, maxDistance: 3, posting: true)]
     
     func saveData() {
         let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
