@@ -13,11 +13,22 @@ class LikesViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var likedDogs: LikedDogs!
-    var photo: UIImage!
+    var photo: Photo!
+    var photos: Photos!
+    var dogs: Dogs!
+    var dog: Dog!
+    
+    var likedDogsPhotos: [UIImage] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if dog == nil {
+            dog = Dog()
+        }
+        
+        dogs = Dogs()
+        photos = Photos()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -26,10 +37,30 @@ class LikesViewController: UIViewController {
         likedDogs.loadData {
             self.tableView.reloadData()
         }
+        
+        print(likedDogs.dogsArray[0].documentID)
+        
+        dogs.loadData {
+            print("dogs loaded")
+        }
+        
+        for ld in likedDogs.dogsArray {
+            
+            var newLikeImage = UIImage(systemName: "questionmark")!
+            for d in dogs.dogArray {
+                if ld.documentID == d.documentID {
+                    photos.loadData(dog: d) {
+                        newLikeImage = self.photos.photoArray.last?.image ?? UIImage(systemName: "questionmark")!
+                    }
+                }
+            }
+            likedDogsPhotos.append(newLikeImage)
+        }
+        
     }
     
     @IBAction func posterButtonPressed(_ sender: UIButton) {
-       // oneButtonAlert(title: "Poster Email:", message: "\(likedDogs.dogsArray[])")
+       //oneButtonAlert(title: "Poster Email:", message: likedDogs.dogArray[indexPath].posterEmail)
     }
     
     
@@ -53,8 +84,7 @@ extension LikesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! LikeTableViewCell
         cell.dog = likedDogs.dogsArray[indexPath.row]
-       // cell.photo = photos.photoArray[indexPath.row]
-        cell.image = photo
+        cell.dogImage = likedDogsPhotos[indexPath.row]
         return cell
     }
     

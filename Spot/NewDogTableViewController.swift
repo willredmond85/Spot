@@ -36,13 +36,19 @@ class NewDogTableViewController: UITableViewController {
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
         
+        imagePickerController.delegate = self
+        
         photoSavedLabel.text = ""
         
         
         if dog == nil {
             dog = Dog()
         }
+        
         photos = Photos()
+        
+        self.navigationItem.title = "Add Dog"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     func leaveViewController() {
@@ -115,11 +121,20 @@ class NewDogTableViewController: UITableViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         updateFromUserInterface()
+        
         dog.saveData { (success) in
+            if success {
+                print("successfully saved dog")
+            } else {
+                print("ERROR: cant unwind review segue")
+            }
+        }
+        print(photo.image)
+        photo.saveData(dog: dog) { (success) in
             if success {
                 self.leaveViewController()
             } else {
-                print("ERROR: cant unwind review segue")
+                print("damn that photo didn't save")
             }
         }
         
@@ -131,15 +146,17 @@ class NewDogTableViewController: UITableViewController {
 extension NewDogTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         photo = Photo()
-        
+        print("howdy")
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            dog.image = editedImage
+            photo.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            dog.image = originalImage
+            photo.image = originalImage
         }
+        print(photo.image)
         photoSavedLabel.text = "photo saved!"
+        
+        
         dismiss(animated: true, completion: nil)
     }
     

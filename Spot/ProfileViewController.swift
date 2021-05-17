@@ -34,6 +34,9 @@ class ProfileViewController: UIViewController {
         configureSegmentedControl(segmentControl: hypoSegmentControl)
         configureSegmentedControl(segmentControl: distanceSegmentControl)
         
+        self.navigationItem.title = "Your Profile"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

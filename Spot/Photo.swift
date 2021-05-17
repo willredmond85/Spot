@@ -11,31 +11,29 @@ import Firebase
 class Photo {
     var image: UIImage
     var photoUserID: String
-    var photoURL: String
     var documentID: String
     
     var dictionary: [String: Any] {
-        return ["photoUserID": photoUserID, "photoURL": photoURL]
+        return ["photoUserID": photoUserID]
     }
     
-    init(image: UIImage, photoUserID: String, photoURL: String, documentID: String) {
+    init(image: UIImage, photoUserID: String, documentID: String) {
         self.image = image
         self.photoUserID = photoUserID
         self.documentID = documentID
-        self.photoURL = photoURL
+        
     }
     
     convenience init() {
         let photoUserID = Auth.auth().currentUser?.uid ?? ""
-        self.init(image: UIImage(), photoUserID: photoUserID, photoURL: "", documentID: "")
+        self.init(image: UIImage(), photoUserID: photoUserID, documentID: "")
     }
     
     convenience init(dictionary: [String: Any]) {
         let photoUserID = dictionary["photoUserID"] as! String? ?? ""
-        let photoURL = dictionary["photoURL"] as! String? ?? ""
         let documentID = dictionary["documentID"] as! String? ?? ""
         
-        self.init(image: UIImage(), photoUserID: photoUserID, photoURL: photoURL, documentID: documentID)
+        self.init(image: UIImage(), photoUserID: photoUserID, documentID: documentID)
         
     }
     
@@ -70,12 +68,7 @@ class Photo {
                 guard error == nil else {
                     return completion(false)
                 }
-                guard let url = url else {
-                    return completion(false)
-                }
-                self.photoURL = "\(url)"
-                
-                
+        
                 let dataToSave: [String: Any] = self.dictionary
                 
                 let ref = db.collection("dogs").document(dog.documentID).collection("photos").document(self.documentID)

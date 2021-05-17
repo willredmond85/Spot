@@ -16,13 +16,12 @@ class LikeTableViewCell: UITableViewCell {
     @IBOutlet weak var posterButton: UIButton!
     @IBOutlet weak var dogImageView: UIImageView!
 
-    var image: UIImage! {
+    var dogImage: UIImage! {
         didSet {
-            dogImageView.image = self.image
+            dogImageView.image = self.dogImage
         }
     }
     
-    //var photo: Photo!
     var dog: LikedDog! {
         didSet {
             nameLabel.text = dog.name

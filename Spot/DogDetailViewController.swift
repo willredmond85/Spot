@@ -32,6 +32,7 @@ class DogDetailViewController: UIViewController {
     var prefences = Preferences()
     var currentDog = 0
     
+    var likedDogList: [String] = []
     var currentLocation: CLLocation!
     var locationManager: CLLocationManager!
     //TODO: add image picker for more images
@@ -59,6 +60,10 @@ class DogDetailViewController: UIViewController {
             self.updateUserInterface()
         }
         changeDog()
+        
+        photos.loadData(dog: dog) {
+            self.photo = self.photos.photoArray.last
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +97,7 @@ class DogDetailViewController: UIViewController {
         } else {
             dog = dogs.dogArray[currentDog]
             checkIfGoodDog()
+            checkIfLiked()
         }
     }
     
@@ -156,10 +162,10 @@ class DogDetailViewController: UIViewController {
         }
     }
     
-    func checkIfLiked(newDog: Dog){
+    func checkIfLiked(){
         likedDogs.loadData {
             for diggityDog in self.likedDogs.dogsArray {
-                if newDog.documentID == diggityDog.documentID {
+                if self.dog.documentID == diggityDog.documentID {
                     self.addToCurrentDog()
                     self.changeDog()
                 }
@@ -185,14 +191,11 @@ class DogDetailViewController: UIViewController {
         dislikeButton.layer.cornerRadius = 4
         imageView.clipsToBounds = true
         
-        //TODO: set up photoURL
-//        guard let url = URL(string: photo.photoURL) else {
-//            imageView.image = UIImage(systemName: "questionmark")
-//            return
-//        }
-        imageView.image = dog.image ?? UIImage(systemName: "questionmark")
-        
-//        imageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "questionmark"))
+        if photos.photoArray.count == 0 {
+            imageView.image = UIImage(systemName: "questionmark")
+        } else {
+            imageView.image = photo.image
+        }
     }
     
 
